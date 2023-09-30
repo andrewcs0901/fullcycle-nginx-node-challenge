@@ -25,11 +25,20 @@ services:
       - node-network
     volumes:
       - ./node:/usr/src/app
-    ports:
-      - "3000:3000"
     tty: true
     depends_on:
       - db
+  nginx:
+    build:
+      context: nginx
+    container_name: nginx
+    tty: true
+    ports:
+      - "8080:80"
+    networks:
+      - node-network
+    depends_on:
+      - app
 
 networks:
   node-network:
