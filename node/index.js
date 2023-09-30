@@ -30,7 +30,6 @@ async function query(sql) {
     const queryPromise = new Promise((resolve, reject) => {
         connection.query(sql, (err, _result) => {
             if (err){
-                console.log(err);
                 reject('failed');
             }
             resolve('ok');
