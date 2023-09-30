@@ -1,26 +1,48 @@
-# Desafio Nginx proxy-reverser with Node.js api
+# Nginx proxy-reverser with Node.js
 
-Nesse desafio você colocará em prática o que aprendemos em relação a utilização do nginx como proxy reverso. A idéia principal é que quando um usuário acesse o nginx, o mesmo fará uma chamada em nossa aplicação node.js. Essa aplicação por sua vez adicionará um registro em nosso banco de dados mysql, cadastrando um nome na tabela people.
 
-O retorno da aplicação node.js para o nginx deverá ser:
+| Tecnologias | Nome |
+| -- | -- |
+| <img height="50" src="https://user-images.githubusercontent.com/25181517/183345125-9a7cd2e6-6ad6-436f-8490-44c903bef84c.png" /> | Nginx |
+| <img height="50" src="https://user-images.githubusercontent.com/25181517/183859966-a3462d8d-1bc7-4880-b353-e2cbed900ed6.png" /> | Express.js |
+| <img height="50" src="https://user-images.githubusercontent.com/25181517/183896128-ec99105a-ec1a-4d85-b08b-1aa1620b2046.png" /> | MySQL |
 
-<h1>Full Cycle Rocks!</h1>
+Esse repositório tem como objetivo por em prática os conceitos obtidos no módulo de Docker do curso FullCycle.
 
-- Lista de nomes cadastrada no banco de dados.
+## Objetivos:
+- Retornar a lista de usuários cadastradas em um banco de dados MySQL:
+  - Request:
+    ```
+    curl --location 'http://localhost:8080/'
+    ```
+  - Response
+    ``` html
+    <h1>Full Cycle Rocks!</h1>
+    <li>Lista de nomes cadastrada no banco de dados.../</li>
+    ```
 
-Gere o docker-compose de uma forma que basta apenas rodarmos: docker-compose up -d que tudo deverá estar funcionando e disponível na porta: 8080.
+- Cadastrar usuários no banco de dados:
+  - Request:
+    ```
+    curl --location --request POST 'http://localhost:8080/people/<nome_usuário>'
+    ```
+  - Response
+    ```
+        Ok
+    ```
 
-Suba tudo em um repositório e faça a entrega.
+- [EXTRA] Restaurar os usuários na versão inicial:
+  - Request:
+    ```
+    curl --location --request POST 'http://localhost:8080/reset'
+    ```
+  - Response
+    ```
+        Ok
+    ```
 
-* A linguagem de programação para este desafio é Node/JavaScript.
+## Instruções de execução:
 
-## TODO
-
-- [] Criar api node
-    - Verificar se foi utilizado o http ou express
-    - Verificar se foi utilizado algum banco de dados diretamente ou foi utilizado um driver
-    - Verificar qual endpoint deve retornar "Full Cycle Rocks"
-    - Verificar qual endpoint deve registrar o nome do usuário
-- [] Configurar nginx
-    - [] Chamar aplicação node
-    - [] Disponibilizar na rota 8080
+``` bash
+    docker-compose up --build
+```
