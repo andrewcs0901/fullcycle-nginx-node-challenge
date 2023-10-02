@@ -15,14 +15,11 @@ services:
     networks:
       - node-network
   app:
-    build:
-      context: node
+    build: ./node
     container_name: app
     entrypoint: dockerize -wait tcp://db:3306 -timeout 50s node index.js
     networks:
       - node-network
-    volumes:
-      - ./node:/usr/src/app
     tty: true
     depends_on:
       - db
