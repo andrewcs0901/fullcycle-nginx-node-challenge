@@ -15,9 +15,12 @@ services:
     networks:
       - node-network
   app:
-    build: ./node
+    build: 
+      context: ./node
     container_name: app
-    entrypoint: dockerize -wait tcp://db:3306 -timeout 50s node index.js
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 50s sh -c "npm install && node index.js"
+    volumes:
+      - ./node:/usr/src/app
     networks:
       - node-network
     tty: true
